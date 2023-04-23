@@ -149,7 +149,7 @@ class HypeLogger(logging.Logger):
 _log = HypeLogger('hypecord')
 _log.setLevel(logging.INFO)
 
-class asciiartlogo():
+def asciiartlogo():
     now = datetime.now()
     ctzo = now.strftime("%Y-%m-%d")
     cto = now.strftime("%H:%M:%S")
