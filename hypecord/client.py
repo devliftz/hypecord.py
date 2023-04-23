@@ -284,7 +284,7 @@ class Client:
     def __init__(self, *, intents: Intents, **options: Any) -> None:
         self.loop: asyncio.AbstractEventLoop = _loop
         # self.ws is set in the connect method
-        self.ws: DiscordWebSocket = None  # type: ignore
+        self.ws: HypecordWebSocket = None  # type: ignore
         self._listeners: Dict[str, List[Tuple[asyncio.Future, Callable[..., bool]]]] = {}
         self.shard_id: Optional[int] = options.get('shard_id')
         self.shard_count: Optional[int] = options.get('shard_count')
@@ -339,7 +339,7 @@ class Client:
 
     # internals
 
-    def _get_websocket(self, guild_id: Optional[int] = None, *, shard_id: Optional[int] = None) -> DiscordWebSocket:
+    def _get_websocket(self, guild_id: Optional[int] = None, *, shard_id: Optional[int] = None) -> HypecordWebSocket:
         return self.ws
 
     def _get_state(self, **options: Any) -> ConnectionState:
@@ -682,7 +682,7 @@ class Client:
         }
         while not self.is_closed():
             try:
-                coro = DiscordWebSocket.from_client(self, **ws_params)
+                coro = HypecordWebSocket.from_client(self, **ws_params)
                 self.ws = await asyncio.wait_for(coro, timeout=60.0)
                 ws_params['initial'] = False
                 while True:
