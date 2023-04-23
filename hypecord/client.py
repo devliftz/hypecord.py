@@ -136,7 +136,7 @@ class HypeLogger(logging.Logger):
         
         # Add a handler to log warnings to a separate file
         warning_handler = logging.FileHandler(filename='discord_warnings.log', encoding='utf-8', mode='w')
-        warning_handler.setFormatter(logging.Formatter('I %(asctime)s %(levelname)s: %(name)s: %(message)s'))
+        warning_handler.setFormatter(logging.Formatter('\033[31mI %(asctime)s %(levelname)s: [%(processName)s] %(name)s: %(message)s'))
         warning_handler.setLevel(logging.WARNING)
         self.addHandler(warning_handler)
 
@@ -148,6 +148,7 @@ class HypeLogger(logging.Logger):
 
 _log = HypeLogger('hypecord')
 _log.setLevel(logging.INFO)
+_log.warning("tes")
 
 now = datetime.now()
 ctzo = now.strftime("%Y-%m-%d")
