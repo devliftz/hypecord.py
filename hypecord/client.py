@@ -909,8 +909,8 @@ class Client:
             DiscordWebSocket.identify = identify
             _log.info("Sending identify payload to the gateway")
             _log.info("Enabled mobile presence Payload")
-        else:
-            print("Skipping mobile presence payload")
+        elif mobile == False:
+            return
 
         try:
             asyncio.run(runner())
