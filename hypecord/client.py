@@ -905,13 +905,17 @@ class Client:
                 root=root_logger,
             )
 
-        try:
-            asyncio.run(runner())
-
         if mobile == True:
             from hypecord.mobile import identify
 
             DiscordWebSocket.identify = identify
+            _log.info("Sending identify payload to the gateway")
+            _log.info("Enabled mobile presence Payload")
+        else:
+            print("Skipping mobile presence payload")
+
+        try:
+            asyncio.run(runner())
 
         except KeyboardInterrupt:
             # nothing to do here
