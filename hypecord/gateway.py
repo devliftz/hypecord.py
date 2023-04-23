@@ -48,24 +48,16 @@ from datetime import datetime
 class HypeLogger(logging.Logger):
     def __init__(self, name, level=logging.NOTSET):
         super().__init__(name, level)
-        
-        time = datetime.now()
-        timefr = time.strftime("%H:%M")
-
-        date = time.date()
-        datefr = date.strftime("%Y-%m-%d")
-
-        fullfrt = datefr + timefr
 
         # Add a handler to log warnings to a separate file
         warning_handler = logging.FileHandler(filename='discord_warnings.log', encoding='utf-8', mode='w')
-        warning_handler.setFormatter(logging.Formatter(f'\033[31mI\033[0m \033[33m{fullfrt} %(levelname)s:\033[0m \033[1m%(name)s.%(module)s\033[0m %(message)s'))
+        warning_handler.setFormatter(logging.Formatter('\033[31mI\033[0m \033[33m%(asctime)s %(levelname)s:\033[0m \033[1m%(name)s.%(module)s\033[0m %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
         warning_handler.setLevel(logging.WARNING)
         self.addHandler(warning_handler)
 
         # Add a handler to log debug messages to the console
         debug_handler = logging.StreamHandler()
-        debug_handler.setFormatter(logging.Formatter(f'\033[31mI\033[0m \033[33m%(asctime)s %(levelname)s:\033[0m \033[1m%(name)s.%(module)s\033[0m %(message)s'))
+        debug_handler.setFormatter(logging.Formatter('\033[31mI\033[0m \033[33m%(asctime)s %(levelname)s:\033[0m \033[1m%(name)s.%(module)s\033[0m %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
         debug_handler.setLevel(logging.DEBUG)
         self.addHandler(debug_handler)
 
