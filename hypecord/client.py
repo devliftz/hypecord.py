@@ -149,31 +149,30 @@ class HypeLogger(logging.Logger):
 _log = HypeLogger('hypecord')
 _log.setLevel(logging.INFO)
 
-def asciiartlogo():
-    now = datetime.now()
-    ctzo = now.strftime("%Y-%m-%d")
-    cto = now.strftime("%H:%M:%S")
-    cvf = os.getcwd()
-    ghda = ctzo + " " + cto
-    url = "http://api.icey.fr/gateway/connect.json"
-    response = urlopen(url)
-    data_json = json.loads(response.read())
-    connectwss = data_json['active']
-    connectcode = data_json['public_code']
+now = datetime.now()
+ctzo = now.strftime("%Y-%m-%d")
+cto = now.strftime("%H:%M:%S")
+cvf = os.getcwd()
+ghda = ctzo + " " + cto
+url = "http://api.icey.fr/gateway/connect.json"
+response = urlopen(url)
+data_json = json.loads(response.read())
+connectwss = data_json['active']
+connectcode = data_json['public_code']
 
 
-    print(f"""
+print(f"""
 
-    \033[31moooo   o8o   .o88o.     .                                     \033[0mVersion: {hypecord.__version__}  
-    \033[31m `888   `"'   888 `"\   .o8                                   \033[0mAPI Server: api.icey.fr
-    \033[32m 888  oooo  o888oo  .o888oo      oo.ooooo.  oooo    ooo       \033[0mCurrent date: {ctzo}
-    \033[32m 888  `888   888      888        888' `88b  `88.  .8'         \033[0mCurrent time: {cto}
-    \033[33m 888   888   888      888        888   888   `88..8'          \033[0mFile path: {cvf}
-    \033[33m 888   888   888      888 . .o.  888   888    `888'           \033[0mPublic key: {connectcode}
-    \033[34mo888o o888o o888o     `888" Y8P  888bod8P'     .8'     
-    \033[34m                                 888       .o..P'      
-    \033[35m                                o888o      `Y8P'   
-    \033[0m                              
+\033[31moooo   o8o   .o88o.     .                                     \033[0mVersion: {hypecord.__version__}  
+\033[31m `888   `"'   888 `"\   .o8                                   \033[0mAPI Server: api.icey.fr
+\033[32m 888  oooo  o888oo  .o888oo      oo.ooooo.  oooo    ooo       \033[0mCurrent date: {ctzo}
+\033[32m 888  `888   888      888        888' `88b  `88.  .8'         \033[0mCurrent time: {cto}
+\033[33m 888   888   888      888        888   888   `88..8'          \033[0mFile path: {cvf}
+\033[33m 888   888   888      888 . .o.  888   888    `888'           \033[0mPublic key: {connectcode}
+\033[34mo888o o888o o888o     `888" Y8P  888bod8P'     .8'     
+\033[34m                                 888       .o..P'      
+\033[35m                                o888o      `Y8P'   
+\033[0m                              
                                     """)
 
 class _LoopSentinel:
@@ -834,6 +833,7 @@ class Client:
         log_formatter: logging.Formatter = MISSING,
         log_level: int = MISSING,
         root_logger: bool = False,
+        mobile: None,
     ) -> None:
         """A blocking call that abstracts away the event loop
         initialisation from you.
@@ -895,7 +895,7 @@ class Client:
         async def runner():
             async with self:
                 await self.start(token, reconnect=reconnect)
-                asciiartlogo()
+
 
         if log_handler is not None:
             utils.setup_logging(
@@ -907,6 +907,11 @@ class Client:
 
         try:
             asyncio.run(runner())
+
+        if mobile == True:
+            from hypecord.mobile import identify
+
+            DiscordWebSocket.identify = identify
 
         except KeyboardInterrupt:
             # nothing to do here
