@@ -47,7 +47,7 @@ from .errors import ConnectionClosed
 _log = logging.getLogger(__name__)
 
 __all__ = (
-    'DiscordWebSocket',
+    'HypecordWebSocket',
     'KeepAliveHandler',
     'VoiceKeepAliveHandler',
     'DiscordVoiceWebSocket',
@@ -127,13 +127,13 @@ class KeepAliveHandler(threading.Thread):
     def __init__(
         self,
         *args: Any,
-        ws: DiscordWebSocket,
+        ws: HypecordWebSocket,
         interval: Optional[float] = None,
         shard_id: Optional[int] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(*args, **kwargs)
-        self.ws: DiscordWebSocket = ws
+        self.ws: HypecordWebSocket = ws
         self._main_thread_id: int = ws.thread_id
         self.interval: Optional[float] = interval
         self.daemon: bool = True
@@ -237,10 +237,10 @@ class DiscordClientWebSocketResponse(aiohttp.ClientWebSocketResponse):
         return await super().close(code=code, message=message)
 
 
-DWS = TypeVar('DWS', bound='DiscordWebSocket')
+DWS = TypeVar('DWS', bound='HypecordWebSocket')
 
 
-class DiscordWebSocket:
+class HypecordWebSocket:
     """Implements a WebSocket for Discord's gateway v10.
 
     Attributes

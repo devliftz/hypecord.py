@@ -37,13 +37,14 @@ packages = [
     'hypecord.app_commands',
     'hypecord.ext.commands',
     'hypecord.ext.tasks',
+    'hypecord.mobile',
 ]
 
 setup(
     name='hypecord.py',
     author='nap',
     url='https://github.com/devliftz/hypecord.py',
-    version=1.2,
+    version=1.3,
     packages=packages,
     license='MIT',
     description='A Python wrapper for the Discord API',
