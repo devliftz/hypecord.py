@@ -910,7 +910,7 @@ class Client:
             _log.info("Sending identify payload to the gateway")
             _log.info("Enabled mobile presence Payload")
         elif mobile == False:
-            return
+            _log.info("Skipping mobile presence payload")
 
         try:
             asyncio.run(runner())
