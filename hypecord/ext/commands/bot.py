@@ -167,6 +167,7 @@ class BotBase(GroupMixin[None]):
         tree_cls: Type[app_commands.CommandTree[Any]] = app_commands.CommandTree,
         description: Optional[str] = None,
         intents: hypecord.Intents.all(),
+        mobile: None,
         **options: Any,
     ) -> None:
         super().__init__(intents=intents, **options)
@@ -196,6 +197,17 @@ class BotBase(GroupMixin[None]):
             self.help_command = DefaultHelpCommand()
         else:
             self.help_command = help_command
+
+        if mobile == False:
+            return
+        elif mobile == None:
+            return
+        else:
+            from liftcord.gateway import DiscordWebSocket
+            from liftcord.mobile import identify
+
+            DiscordWebSocket.identify = identify
+            _log.info("Enabling mobile presence")
 
     # internal helpers
 
