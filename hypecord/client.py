@@ -895,7 +895,7 @@ class Client:
         async def runner():
             async with self:
                 await self.start(token, reconnect=reconnect)
-                asciiartlogo
+                asciiartlogo()
 
         if log_handler is not None:
             utils.setup_logging(

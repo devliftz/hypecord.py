@@ -216,9 +216,7 @@ class BotBase(GroupMixin[None]):
             self.help_command = help_command
 
         if mobile == False:
-            return
-        elif mobile == None:
-            return
+            _log.info("Disabling Mobile Presence")
         else:
             from hypecord.gateway import DiscordWebSocket
             from hypecord.mobile import identify
