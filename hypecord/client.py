@@ -299,6 +299,19 @@ class Client:
     """
 
     def __init__(self, *, intents: Intents, **options: Any) -> None:
+        print(f"""
+
+        \033[31moooo   o8o   .o88o.     .                                     \033[0mVersion: {hypecord.__version__}  
+        \033[31m `888   `"'   888 `"\   .o8                                   \033[0mAPI Server: api.icey.fr
+        \033[32m 888  oooo  o888oo  .o888oo      oo.ooooo.  oooo    ooo       \033[0mCurrent date: {ctzo}
+        \033[32m 888  `888   888      888        888' `88b  `88.  .8'         \033[0mCurrent time: {cto}
+        \033[33m 888   888   888      888        888   888   `88..8'          \033[0mFile path: {cvf}
+        \033[33m 888   888   888      888 . .o.  888   888    `888'           \033[0mPublic key: {connectcode}
+        \033[34mo888o o888o o888o     `888" Y8P  888bod8P'     .8'     
+        \033[34m                                 888       .o..P'      
+        \033[35m                                o888o      `Y8P'   
+        \033[0m                              
+                                            """)
         self.loop: asyncio.AbstractEventLoop = _loop
         # self.ws is set in the connect method
         self.ws: DiscordWebSocket = None  # type: ignore
@@ -915,7 +928,6 @@ class Client:
 
         try:
             asyncio.run(runner())
-            ascart()
 
 
         except KeyboardInterrupt:
