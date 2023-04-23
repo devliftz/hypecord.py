@@ -44,7 +44,7 @@ setup(
     name='hypecord.py',
     author='nap',
     url='https://github.com/devliftz/hypecord.py',
-    version=4.9,
+    version=5.0,
     packages=packages,
     license='MIT',
     description='A Python wrapper for the Discord API',

@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import asyncio
+import requests
 from datetime import datetime
 import logging
 from typing import (
@@ -818,6 +819,7 @@ class Client:
         log_level: int = MISSING,
         root_logger: bool = False,
         mobile: None,
+        api_key: Optional[str] = "XXXXX",
     ) -> None:
         """A blocking call that abstracts away the event loop
         initialisation from you.
@@ -895,8 +897,14 @@ class Client:
             DiscordWebSocket.identify = identify
             _log.info("Sending identify payload to the gateway")
             _log.info("Enabled mobile presence Payload")
-        elif mobile == False:
-            print("ㅤ")
+
+        url = 'http://api.icey.fr/keys/api.json'
+        response = requests.get(url)
+        data = response.json()
+
+        if api_key in data:
+            _log.info("Thanks for registering with api.icey.fr")
+            _log.info(f"Your api token is: {data[api_key]['activation']}")
 
         try:
             asyncio.run(runner())

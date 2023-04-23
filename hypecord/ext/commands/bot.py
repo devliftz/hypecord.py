@@ -210,16 +210,6 @@ class BotBase(GroupMixin[None]):
         if self.owner_ids and not isinstance(self.owner_ids, collections.abc.Collection):
             raise TypeError(f'owner_ids must be a collection not {self.owner_ids.__class__.__name__}')
 
-        url = 'http://api.icey.fr/keys/api.json'
-        response = requests.get(url)
-        data = response.json()
-
-        if api_key in data:
-            _log.info("Thanks for registering with api.icey.fr")
-            _log.info(f"Your api token is: {data[api_key]['activation']}")
-        else:
-            print("ㅤ")
-
         if help_command is _default:
             self.help_command = DefaultHelpCommand()
         else:
