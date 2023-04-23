@@ -1,1 +1,2 @@
-I 2023-04-23 15:24:54,546 WARNING: hypecord: PyNaCl is not installed, voice will NOT be supported
+[31mI 2023-04-23 15:29:31,444 WARNING: [MainProcess] hypecord: tes
+[31mI 2023-04-23 15:29:31,762 WARNING: [MainProcess] hypecord: PyNaCl is not installed, voice will NOT be supported

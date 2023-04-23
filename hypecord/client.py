@@ -136,13 +136,13 @@ class HypeLogger(logging.Logger):
         
         # Add a handler to log warnings to a separate file
         warning_handler = logging.FileHandler(filename='discord_warnings.log', encoding='utf-8', mode='w')
-        warning_handler.setFormatter(logging.Formatter('\033[31mI %(asctime)s %(levelname)s: [%(processName)s] %(name)s: %(message)s'))
+        warning_handler.setFormatter(logging.Formatter('\033[31mI\033[0m \033[33m%(asctime)s %(levelname)s:\033[0m \033[1m%(name)s.%(module)s:\033[0m %(message)s'))
         warning_handler.setLevel(logging.WARNING)
         self.addHandler(warning_handler)
 
         # Add a handler to log debug messages to the console
         debug_handler = logging.StreamHandler()
-        debug_handler.setFormatter(logging.Formatter('I %(asctime)s %(levelname)s: %(name)s: %(message)s'))
+        debug_handler.setFormatter(logging.Formatter('\033[31mI\033[0m \033[33m%(asctime)s %(levelname)s:\033[0m \033[1m%(name)s.%(module)s:\033[0m %(message)s'))
         debug_handler.setLevel(logging.DEBUG)
         self.addHandler(debug_handler)
 
