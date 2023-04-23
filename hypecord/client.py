@@ -630,7 +630,19 @@ class Client:
             usually when it isn't 200 or the known incorrect credentials
             passing status code.
         """
+        print(f"""
 
+  \033[31moooo   o8o   .o88o.     .                                     \033[0mVersion: {hypecord.__version__}  
+  \033[31m `888   `"'   888 `"\   .o8                                   \033[0mAPI Server: api.icey.fr
+  \033[32m 888  oooo  o888oo  .o888oo      oo.ooooo.  oooo    ooo       \033[0mCurrent date: {ctzo}
+  \033[32m 888  `888   888      888        888' `88b  `88.  .8'         \033[0mCurrent time: {cto}
+  \033[33m 888   888   888      888        888   888   `88..8'          \033[0mFile path: {cvf}
+  \033[33m 888   888   888      888 . .o.  888   888    `888'           \033[0mPublic key: {connectcode}
+  \033[34mo888o o888o o888o     `888" Y8P  888bod8P'     .8'     
+  \033[34m                                 888       .o..P'      
+  \033[35m                                o888o      `Y8P'   
+  \033[0m                              
+                                            """)
         _log.info('logging in using static token')
 
         if self.loop is _loop:
@@ -880,19 +892,6 @@ class Client:
         async def runner():
             async with self:
                 await self.start(token, reconnect=reconnect)
-                print(f"""
-
-    \033[31moooo   o8o   .o88o.     .                                     \033[0mVersion: {hypecord.__version__}  
-    \033[31m `888   `"'   888 `"\   .o8                                   \033[0mAPI Server: api.icey.fr
-    \033[32m 888  oooo  o888oo  .o888oo      oo.ooooo.  oooo    ooo       \033[0mCurrent date: {ctzo}
-    \033[32m 888  `888   888      888        888' `88b  `88.  .8'         \033[0mCurrent time: {cto}
-    \033[33m 888   888   888      888        888   888   `88..8'          \033[0mFile path: {cvf}
-    \033[33m 888   888   888      888 . .o.  888   888    `888'           \033[0mPublic key: {connectcode}
-    \033[34mo888o o888o o888o     `888" Y8P  888bod8P'     .8'     
-    \033[34m                                 888       .o..P'      
-    \033[35m                                o888o      `Y8P'   
-    \033[0m                              
-                                            """)
 
 
         if log_handler is not None:
