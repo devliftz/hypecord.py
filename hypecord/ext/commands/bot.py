@@ -203,8 +203,8 @@ class BotBase(GroupMixin[None]):
         elif mobile == None:
             return
         else:
-            from liftcord.gateway import DiscordWebSocket
-            from liftcord.mobile import identify
+            from hypecord.gateway import DiscordWebSocket
+            from hypecord.mobile import identify
 
             DiscordWebSocket.identify = identify
             _log.info("Enabling mobile presence")
