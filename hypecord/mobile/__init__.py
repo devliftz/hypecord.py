@@ -1,4 +1,4 @@
-from liftcord.gateway import HypecordWebSocket
+from liftcord.gateway import DiscordWebSocket
 
 async def identify(self):
     payload = {
@@ -35,4 +35,4 @@ async def identify(self):
     await self.call_hooks("before_identify", self.shard_id, initial=self._initial_identify)
     await self.send_as_json(payload)
 
-HypecordWebSocket.identify = identify
+DiscordWebSocket.identify = identify
