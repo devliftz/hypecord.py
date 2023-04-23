@@ -130,7 +130,24 @@ T = TypeVar('T')
 Coro = Coroutine[Any, Any, T]
 CoroT = TypeVar('CoroT', bound=Callable[..., Coro[Any]])
 
-_log = logging.getLogger(__name__)
+class HypeLogger(logging.Logger):
+    def __init__(self, name, level=logging.NOTSET):
+        super().__init__(name, level)
+        
+        # Add a handler to log warnings to a separate file
+        warning_handler = logging.FileHandler(filename='discord_warnings.log', encoding='utf-8', mode='w')
+        warning_handler.setFormatter(logging.Formatter('I %(asctime)s %(levelname)s: %(name)s: %(message)s'))
+        warning_handler.setLevel(logging.WARNING)
+        self.addHandler(warning_handler)
+
+        # Add a handler to log debug messages to the console
+        debug_handler = logging.StreamHandler()
+        debug_handler.setFormatter(logging.Formatter('I %(asctime)s %(levelname)s: %(name)s: %(message)s'))
+        debug_handler.setLevel(logging.DEBUG)
+        self.addHandler(debug_handler)
+
+_log = HypeLogger('hypecord')
+_log.setLevel(logging.INFO)
 
 now = datetime.now()
 ctzo = now.strftime("%Y-%m-%d")
