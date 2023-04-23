@@ -148,7 +148,6 @@ class HypeLogger(logging.Logger):
 
 _log = HypeLogger('hypecord')
 _log.setLevel(logging.INFO)
-_log.warning("tes")
 
 now = datetime.now()
 ctzo = now.strftime("%Y-%m-%d")
